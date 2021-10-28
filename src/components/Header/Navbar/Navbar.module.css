@@ -17,7 +17,7 @@
 	display:block;
 	margin:0;
 	padding:11px 25px;
-	color:#878989;
+	color:#b9732f;
 	text-decoration:none;
 	font-size:13px;
 	line-height:16px;
@@ -25,7 +25,7 @@
 .menunav ul li.active a, .menunav ul li a:hover {
 	color:#fff;
 	text-decoration:none;
-	background:#78bbe6;
+	background:#6daffe;
 }
 
 .clear {

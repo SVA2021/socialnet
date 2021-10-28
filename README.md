@@ -1,6 +1,11 @@
-# Getting Started with Create React App
+# Getting Started with Create React App (Social net)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+This project is education of React.js based on IT-KAMASUTRA course
+
+
+
 
 ## Available Scripts
 

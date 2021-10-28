@@ -1,0 +1,40 @@
+.containerDialogs {
+    margin: 10px;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: 10px;
+
+    background-color: #437fc7;
+}
+
+.dialogUserWrapper {
+    margin: 10px;
+    padding: 3px;
+    min-width: 25vw;
+
+
+    background-color: #6daffe;
+    border: 1px black solid ;
+}
+
+.messageListWrapper {
+    margin: 10px;
+    padding: 3px;
+    min-width: 50vw;
+
+    background-color: #6daffe;
+}
+
+.dialogUserItem {
+    margin: 5px;
+    background-color: #edf6ff;
+}
+
+.messageItem {
+    padding: 5px;
+    background-color: #edf6ff;
+    border: 1px black solid ;
+}
