@@ -23,31 +23,30 @@ const Message = (props) => {
 
 const Dialogs = (props) => {
 
-    let userList = [
-        {id: 1, name: 'Dimych'},
-        {id: 2, name: 'Andrew'},
-        {id: 3, name: 'Sveta'},
-        {id: 4, name: 'Sasha'},
-        {id: 5, name: 'Viktor'},
-        {id: 6, name: 'Valera'}
-    ]
+    let userDiv = props.users.map( user => <DialogUser name={user.name} id={user.id}/>);
+    let messageDiv = props.messages.map(m => <Message message={m.message} id={m.id}/>);
 
-    let messageList = [
-        {id: 1, message: 'Hi'},
-        {id: 2, message: 'How is your it-kamasutra?'},
-        {id: 3, message: 'Yo'},
-        {id: 4, message: 'Yo'},
-        {id: 5, message: 'Yo'}
-    ]
+    let newMessageElement = React.createRef();
 
-    let userDiv = userList.map(user => <DialogUser name={user.name} id={user.id}/>);
-    let messageDiv = messageList.map(m => <Message message={m.message} id={m.id}/>);
+    let addMessage = () => {
+        let text = newMessageElement.current.value;
+        alert(text);
+    }
+    
     return (
         <div className={main.containerDialogs}>
             <div className={main.dialogUserWrapper}>
               {userDiv}
             </div>
             <div className={main.messageListWrapper}>
+            <h3>My messages</h3>
+            <div>
+                <textarea ref={newMessageElement}></textarea>
+            </div>
+            <div>
+                <button onClick={addMessage}>add post</button>
+            </div>
+
                {messageDiv}
             </div>
         </div>
