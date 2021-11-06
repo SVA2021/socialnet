@@ -14,9 +14,13 @@ const Content = (props) => {
     return (
         <div className={main}>
             <Route path="/news" render={() => 
-                <News postlist={props.postlist} addPost={props.addPost} 
-                updateNewPostText={props.updateNewPostText} 
-                newPostText={props.newPostText}/> } />
+                <News 
+                postlist={props.postlist} 
+                //addPost={props.addPost} 
+                dispatch={props.dispatch}
+               // updateNewPostText={props.updateNewPostText} 
+                newPostText={props.newPostText}
+                /> } />
             <Route path="/dialogs" render={() => 
                 <Dialogs users={props.userList} messages={props.messageList} />} />
             <Route path="/music" component={Music} />

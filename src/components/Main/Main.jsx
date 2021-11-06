@@ -8,10 +8,15 @@ const Main = (props) => {
     return (
         <div className={main}>
             <Sidebar />
-            <Content userList={props.userList} messageList={props.messageList} 
-            postlist={props.postlist} addPost={props.addPost} 
-            updateNewPostText={props.updateNewPostText}
-            newPostText={props.newPostText}/>
+            <Content 
+            userList={props.userList} 
+            messageList={props.messageList} 
+            postlist={props.postlist} 
+            //addPost={props.addPost} 
+            dispatch={props.dispatch}
+          //  updateNewPostText={props.updateNewPostText}
+            newPostText={props.newPostText}
+           />
         </div>
     );
 }

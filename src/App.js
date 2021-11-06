@@ -16,8 +16,8 @@ function App(props) {
       <Main userList={props.state.dialogPage.userList} 
       messageList={props.state.dialogPage.messageList} 
       postlist={props.state.postPage.postlist}
-      addPost={props.addPost}
-      updateNewPostText={props.updateNewPostText}
+      dispatch={props.dispatch}
+      //updateNewPostText={props.updateNewPostText}
       newPostText={props.state.postPage.newPostText}
       />
       <Footer/>
@@ -28,3 +28,4 @@ function App(props) {
 }
 
 export default App;
+//addPost={props.addPost}
