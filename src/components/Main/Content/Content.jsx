@@ -16,13 +16,16 @@ const Content = (props) => {
             <Route path="/news" render={() => 
                 <News 
                 postlist={props.postlist} 
-                //addPost={props.addPost} 
                 dispatch={props.dispatch}
-               // updateNewPostText={props.updateNewPostText} 
                 newPostText={props.newPostText}
                 /> } />
             <Route path="/dialogs" render={() => 
-                <Dialogs users={props.userList} messages={props.messageList} />} />
+                <Dialogs 
+                users={props.userList} 
+                messages={props.messageList} 
+                dispatch={props.dispatch} 
+                newMessageText={props.newMessageText}
+                />} />
             <Route path="/music" component={Music} />
             <Route path="/profile" component={Profile} />
             <Route path="/settings" component={Settings} />

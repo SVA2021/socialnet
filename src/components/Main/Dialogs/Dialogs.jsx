@@ -1,6 +1,7 @@
 import React from "react";
 import main from "./Dialogs.module.css"
 import { NavLink } from "react-router-dom";
+import { addMessageActionCreator, updateNewMessageActionCreator } from "../../../redux/dialogs-reducer";
 
 const DialogUser = (props) => {
     let path = "/dialogs/" + props.id;
@@ -30,7 +31,14 @@ const Dialogs = (props) => {
 
     let addMessage = () => {
         let text = newMessageElement.current.value;
-        alert(text);
+        let action = addMessageActionCreator(text); //{type: 'ADD-POST', newPostText: text};
+        props.dispatch(action);
+    }
+
+    let onMessageChange = () => {
+        let text = newMessageElement.current.value;
+        let action = updateNewMessageActionCreator(text);
+        props.dispatch(action);
     }
     
     return (
@@ -41,7 +49,7 @@ const Dialogs = (props) => {
             <div className={main.messageListWrapper}>
             <h3>My messages</h3>
             <div>
-                <textarea ref={newMessageElement}></textarea>
+                <textarea onChange={onMessageChange} ref={newMessageElement} value={props.newMessageText} />
             </div>
             <div>
                 <button onClick={addMessage}>add post</button>

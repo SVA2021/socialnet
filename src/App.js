@@ -17,8 +17,8 @@ function App(props) {
       messageList={props.state.dialogPage.messageList} 
       postlist={props.state.postPage.postlist}
       dispatch={props.dispatch}
-      //updateNewPostText={props.updateNewPostText}
       newPostText={props.state.postPage.newPostText}
+      newMessageText={props.state.dialogPage.newMessageText}
       />
       <Footer/>
       

@@ -1,3 +1,6 @@
+import dialogsReducer from "./dialogs-reducer";
+import postReducer from "./post-reducer";
+
 const ADD_POST = 'ADD_POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
@@ -29,11 +32,15 @@ let store = {
                 {id: 3, message: 'Yo'},
                 {id: 4, message: 'Yo'},
                 {id: 5, message: 'Yo'}
-            ]
+            ], 
+            newMessageText: "hi"
         }
     },
 
     dispatch(action) {
+        dialogsReducer(this._state.dialogPage, action);
+        postReducer(this._state.postPage, action);
+        /*
         if (action.type === ADD_POST) {
             let newPost = {
                 id: 6,
@@ -44,10 +51,24 @@ let store = {
             this._state.postPage.newPostText = '';
             this._rerenderEntireTree(this._state);
         } else if (action.type === UPDATE_NEW_POST_TEXT) {
-            //this.updateNewPostText();
             this._state.postPage.newPostText = action.newPostText;
             this._rerenderEntireTree(this._state);
-        }
+        }/* else if (action.type === UPDATE_NEW_MESSAGE) {
+            this._state.dialogPage.newMessageText = action.newMessageText;
+            this._rerenderEntireTree(this._state);
+        } */
+        this._rerenderEntireTree(this._state);
+        
+        /*else if (action.type === ADD_MESSAGE) {
+            let newMessage = {
+                id: 6,
+                message: this._state.dialogPage.newMessageText
+            };
+        
+            this._state.dialogPage.messageList.push(newMessage);
+            this._state.dialogPage.newMessageText = '';
+            this._rerenderEntireTree(this._state);
+        }*/
     },
 
     getState() {
@@ -57,23 +78,7 @@ let store = {
     _rerenderEntireTree() {
         console.log('state');
     },
-/*
-    addPost() {
-        let newPost = {
-            id: 6,
-            post: this._state.postPage.newPostText
-        };
-    
-        this._state.postPage.postlist.push(newPost);
-        this._state.postPage.newPostText = '';
-        this._rerenderEntireTree(this._state);
-    },
 
-    updateNewPostText(newText) {
-        this._state.postPage.newPostText = newText;
-        this._rerenderEntireTree(this._state);
-    },
-*/
     subscriber (observer) {
         this._rerenderEntireTree = observer;
     }
@@ -81,8 +86,12 @@ let store = {
 
 
 window.store = store;
-
+/*
 export const addPostActionCreator = (text) => ({type: ADD_POST, newPostText: text});
 export const updateNewPostActionCreator = (text) => ({type: UPDATE_NEW_POST_TEXT, newPostText: text});
+/*
+export const addMessageActionCreator = (text) => ({type: ADD_MESSAGE, newMessageText: text});
+export const updateNewMessageActionCreator = (text) => ({type: UPDATE_NEW_MESSAGE, newMessageText: text});
+*/
 
 export default store;

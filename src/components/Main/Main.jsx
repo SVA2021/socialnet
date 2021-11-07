@@ -12,10 +12,9 @@ const Main = (props) => {
             userList={props.userList} 
             messageList={props.messageList} 
             postlist={props.postlist} 
-            //addPost={props.addPost} 
             dispatch={props.dispatch}
-          //  updateNewPostText={props.updateNewPostText}
             newPostText={props.newPostText}
+            newMessageText={props.newMessageText}
            />
         </div>
     );
