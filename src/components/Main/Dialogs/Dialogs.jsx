@@ -1,7 +1,6 @@
 import React from "react";
 import main from "./Dialogs.module.css"
 import { NavLink } from "react-router-dom";
-import { addMessageActionCreator, updateNewMessageActionCreator } from "../../../redux/dialogs-reducer";
 
 const DialogUser = (props) => {
     let path = "/dialogs/" + props.id;
@@ -24,21 +23,17 @@ const Message = (props) => {
 
 const Dialogs = (props) => {
 
-    let userDiv = props.users.map( user => <DialogUser name={user.name} id={user.id}/>);
-    let messageDiv = props.messages.map(m => <Message message={m.message} id={m.id}/>);
+    let userDiv = props.dialogPage.userList.map( user => <DialogUser name={user.name} id={user.id}/>);
+    let messageDiv = props.dialogPage.messageList.map(m => <Message message={m.message} id={m.id}/>);
 
     let newMessageElement = React.createRef();
 
     let addMessage = () => {
-        let text = newMessageElement.current.value;
-        let action = addMessageActionCreator(text); //{type: 'ADD-POST', newPostText: text};
-        props.dispatch(action);
+        props.addMessage(newMessageElement.current.value);
     }
 
     let onMessageChange = () => {
-        let text = newMessageElement.current.value;
-        let action = updateNewMessageActionCreator(text);
-        props.dispatch(action);
+        props.onMessageChange(newMessageElement.current.value);
     }
     
     return (
@@ -49,12 +44,11 @@ const Dialogs = (props) => {
             <div className={main.messageListWrapper}>
             <h3>My messages</h3>
             <div>
-                <textarea onChange={onMessageChange} ref={newMessageElement} value={props.newMessageText} />
+                <textarea onChange={onMessageChange} ref={newMessageElement} value={props.dialogPage.newMessageText} />
             </div>
             <div>
-                <button onClick={addMessage}>add post</button>
+                <button onClick={addMessage}>add message</button>
             </div>
-
                {messageDiv}
             </div>
         </div>

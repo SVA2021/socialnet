@@ -3,10 +3,11 @@ import { Route } from "react-router-dom";
 import main from "./Content.module.css"
 
 import News from "../News/News.jsx";
-import Dialogs from "../Dialogs/Dialogs.jsx";
+//import Dialogs from "../Dialogs/Dialogs.jsx";
 import Music from "../Music/Music.jsx";
 import Profile from "../Profile/Profile.jsx";
 import Settings from "../Settings/Settings.jsx";
+import DialogsContainer from "../Dialogs/DialogsContainer";
 
 
 const Content = (props) => {
@@ -14,18 +15,9 @@ const Content = (props) => {
     return (
         <div className={main}>
             <Route path="/news" render={() => 
-                <News 
-                postlist={props.postlist} 
-                dispatch={props.dispatch}
-                newPostText={props.newPostText}
-                /> } />
+                <News store={props.store} /> } />
             <Route path="/dialogs" render={() => 
-                <Dialogs 
-                users={props.userList} 
-                messages={props.messageList} 
-                dispatch={props.dispatch} 
-                newMessageText={props.newMessageText}
-                />} />
+                <DialogsContainer store={props.store} />} />
             <Route path="/music" component={Music} />
             <Route path="/profile" component={Profile} />
             <Route path="/settings" component={Settings} />

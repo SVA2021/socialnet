@@ -1,6 +1,5 @@
 import React from "react";
 import main from "./Posts.module.css";
-import { addPostActionCreator, updateNewPostActionCreator } from "../../../../redux/post-reducer";
 
 const Post = (props) => {
     return (
@@ -13,32 +12,25 @@ const Post = (props) => {
     );
 }
 
-
 const Posts = (props) => {
-  // debugger;
-    let postDiv = props.postlist.map( p => <Post post={p.post} id={p.id}/>);
+
+    let postDiv = props.postPage.postlist.map( p => <Post post={p.post} id={p.id}/>);
 
     let newPostElement = React.createRef();
 
     let addPost = () => {
-        let text = newPostElement.current.value;
-        let action = addPostActionCreator(text); //{type: 'ADD-POST', newPostText: text};
-        //debugger;
-        props.dispatch(action);
-       //props.updateNewPostText('');
+        props.addPost(newPostElement.current.value);
     }
 
     let onPostChange = () => {
-        let text = newPostElement.current.value;
-        let action = updateNewPostActionCreator(text);
-        props.dispatch(action);
+        props.onPostChange(newPostElement.current.value);
     }
 
     return (
         <div className={main}>
             <h3>My posts page</h3>
             <div>
-                <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText} />
+                <textarea onChange={onPostChange} ref={newPostElement} value={props.postPage.newPostText} />
             </div>
             <div>
                 <button onClick={addPost}>add post</button>

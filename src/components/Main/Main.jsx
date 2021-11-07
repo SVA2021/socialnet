@@ -8,14 +8,7 @@ const Main = (props) => {
     return (
         <div className={main}>
             <Sidebar />
-            <Content 
-            userList={props.userList} 
-            messageList={props.messageList} 
-            postlist={props.postlist} 
-            dispatch={props.dispatch}
-            newPostText={props.newPostText}
-            newMessageText={props.newMessageText}
-           />
+            <Content store={props.store} />
         </div>
     );
 }

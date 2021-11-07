@@ -13,13 +13,7 @@ function App(props) {
       
       <Header/>
       <Heroimg />
-      <Main userList={props.state.dialogPage.userList} 
-      messageList={props.state.dialogPage.messageList} 
-      postlist={props.state.postPage.postlist}
-      dispatch={props.dispatch}
-      newPostText={props.state.postPage.newPostText}
-      newMessageText={props.state.dialogPage.newMessageText}
-      />
+      <Main store={props.store} />
       <Footer/>
       
       </BrowserRouter>
@@ -28,4 +22,3 @@ function App(props) {
 }
 
 export default App;
-//addPost={props.addPost}
