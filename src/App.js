@@ -11,7 +11,7 @@ function App(props) {
 
       <Header/>
       <Heroimg />
-      <Main store={props.store}/>
+      <Main />
       <Footer/>
       
     </div>

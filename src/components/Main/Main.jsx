@@ -8,7 +8,7 @@ const Main = (props) => {
     return (
         <div className={main}>
             <Sidebar />
-            <Content store={props.store} />
+            <Content />
         </div>
     );
 }

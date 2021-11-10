@@ -14,7 +14,7 @@ const Post = (props) => {
 
 const Posts = (props) => {
 
-    let postDiv = props.postPage.postlist.map( p => <Post post={p.post} id={p.id}/>);
+    let postDiv = props.postPage.postlist.map(p => <Post post={p.post} id={p.id} />);
 
     let newPostElement = React.createRef();
 
@@ -36,7 +36,7 @@ const Posts = (props) => {
                 <button onClick={addPost}>add post</button>
             </div>
             {postDiv}
-      </div>
+        </div>
     );
 }
 

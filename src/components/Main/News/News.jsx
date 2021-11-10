@@ -5,7 +5,7 @@ import PostsContainer from "./Posts/PostsContainer";
 const News = (props) => {
     return (
         <div className={main}>
-            <PostsContainer store={props.store} />
+            <PostsContainer />
         </div>
     );
 }

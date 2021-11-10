@@ -14,24 +14,8 @@ let initialState = {
 
 
 const postReducer = (state = initialState, action) => {
-    //let stateCopy = {...state};
-    //stateCopy.postlist = [...state.postlist];
     switch (action.type) {
         case ADD_POST: {
-            /*
-            let newPost = {
-                id: 6,
-                post: state.newPostText
-            };
-
-            stateCopy.postlist.push(newPost);
-            stateCopy.newPostText = '';
-            return stateCopy;
-            
-            let newPost = {
-                id: 6,
-                post: state.newPostText
-            };*/
            return {
                ...state,
                postlist: [...state.postlist, { id: 6, post: state.newPostText} ],
@@ -39,8 +23,6 @@ const postReducer = (state = initialState, action) => {
            }
         }
         case UPDATE_NEW_POST_TEXT: {
-            /*stateCopy.newPostText = action.newPostText;
-            return stateCopy;*/
             return {
                 ...state,
                 newPostText: action.newPostText}
