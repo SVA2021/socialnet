@@ -2,61 +2,63 @@ import React from "react";
 import main from "./Profile.module.css"
 import axios from "axios";
 
-const Profile = (props) => {
+class Profile extends React.Component {
     //debugger;
-    let followStatus = (props.user.followed) ? 'Unfollow' : 'Follow';
-    let unfollowAction = (userID) => { props.userUnfollow(props.user.id) };
-    let followAction = (userID) => { props.userFollow(props.user.id) };
-    let clickAction = (props.user.followed) ? unfollowAction : followAction;
+    followStatus = (this.props.user.followed) ? 'Unfollow' : 'Follow';
+    unfollowAction = (userID) => { this.props.userUnfollow(this.props.user.id) };
+    followAction = (userID) => { this.props.userFollow(this.props.user.id) };
+    clickAction = (this.props.user.followed) ? this.unfollowAction : this.followAction;
+
+    render = () => {
     return (
         <div className={main.userProfile}>
             <div className={main.item}>
-                <img className={main.avatarURL} src={props.user.avatarURL} alt="user avatar" />
-                <button onClick={clickAction}>{followStatus}</button>
+                <img className={main.avatarURL} src={this.props.user.avatarURL} alt="user avatar" />
+                <button onClick={this.clickAction}>{this.followStatus}</button>
             </div>
             <div className={main.item}>
-                <p>{props.user.headMessage}</p>
+                <p>{this.props.user.headMessage}</p>
             </div>
             <div className={main.item}>
                 <div className={main.fullname}>
-                    <span>{props.user.fullName.name}</span>
-                    <span>{props.user.fullName.surname}</span>
+                    <span>{this.props.user.fullName.name}</span>
+                    <span>{this.props.user.fullName.surname}</span>
                 </div>
                 <div className={main.location}>
-                    <span>{props.user.location.city}</span>
-                    <span>{props.user.location.country}</span>
+                    <span>{this.props.user.location.city}</span>
+                    <span>{this.props.user.location.country}</span>
                 </div>
             </div>
         </div>
     );
+    }
 }
 
 
-const ProfileList = (props) => {
-    const GetUserProfile = () => {
+class ProfileList extends React.Component{
+    GetUserProfile = () => {
         return (
-            <button onClick={getProfile}>GetUserProfile</button>
+            <button onClick={this.getProfile}>GetUserProfile</button>
         );
     }
 
-    function getProfile() {
-//can not make request to direct url, need to specify exact page
+    getProfile = () => {
+        //can not make request to direct url, need to specify exact page
         axios.get(`http://localhost:8000/profilePage`)
             .then(responce => {
-                props.setState(responce.data.userProfileList);
+                this.props.setState(responce.data.userProfileList);
             });
     }
-    //debugger;
-    let profileBatch = props.userProfileList.map((user) =>
-        <Profile user={user} userUnfollow={props.userUnfollow} userFollow={props.userFollow} />
-    );
 
+    render = () => {
     return (
         <div className={main.parentProfile}>
-            <GetUserProfile />
-            {profileBatch}
+            <this.GetUserProfile />
+            {this.props.userProfileList.map((user) =>
+                <Profile user={user} userUnfollow={this.props.userUnfollow} userFollow={this.props.userFollow} />)}
         </div>
     );
+    }
 }
 
 export default ProfileList;

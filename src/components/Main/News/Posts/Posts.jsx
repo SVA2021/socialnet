@@ -11,33 +11,32 @@ const Post = (props) => {
         </div>
     );
 }
+class Posts extends React.Component {
 
-const Posts = (props) => {
+    newPostElement = React.createRef();
 
-    let postDiv = props.postPage.postlist.map(p => <Post post={p.post} id={p.id} />);
-
-    let newPostElement = React.createRef();
-
-    let addPost = () => {
-        props.addPost(newPostElement.current.value);
+    addPost = () => {
+        this.props.addPost(this.newPostElement.current.value);
     }
 
-    let onPostChange = () => {
-        props.onPostChange(newPostElement.current.value);
+    onPostChange = () => {
+        this.props.onPostChange(this.newPostElement.current.value);
     }
 
-    return (
-        <div className={main}>
-            <h3>My posts page</h3>
-            <div>
-                <textarea onChange={onPostChange} ref={newPostElement} value={props.postPage.newPostText} />
+    render = () => {
+        return (
+            <div className={main}>
+                <h3>My posts page</h3>
+                <div>
+                    <textarea onChange={this.onPostChange} ref={this.newPostElement} value={this.props.postPage.newPostText} />
+                </div>
+                <div>
+                    <button onClick={this.addPost}>add post</button>
+                </div>
+               { this.props.postPage.postlist.map(p => <Post post={p.post} id={p.id} />) }
             </div>
-            <div>
-                <button onClick={addPost}>add post</button>
-            </div>
-            {postDiv}
-        </div>
-    );
+        );
+    }
 }
 
 export default Posts;

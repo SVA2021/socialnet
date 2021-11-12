@@ -7,7 +7,7 @@ const DialogUser = (props) => {
 
     return (
         <div className={main.dialogUserItem}>
-        <NavLink to={path}>{props.name}</NavLink>
+            <NavLink to={path}>{props.name}</NavLink>
         </div>
     );
 }
@@ -15,45 +15,43 @@ const DialogUser = (props) => {
 const Message = (props) => {
     return (
         <div className={main.messageItem}>
-        {props.message}
+            {props.message}
         </div>
     );
 }
 
+class Dialogs extends React.Component {
 
-const Dialogs = (props) => {
+    newMessageElement = React.createRef();
 
-    let userDiv = props.dialogPage.userList.map( user => <DialogUser name={user.name} id={user.id}/>);
-    let messageDiv = props.dialogPage.messageList.map(m => <Message message={m.message} id={m.id}/>);
-
-    let newMessageElement = React.createRef();
-
-    let addMessage = () => {
-        props.addMessage(newMessageElement.current.value);
+    addMessage = () => {
+        this.props.addMessage(this.newMessageElement.current.value);
     }
 
-    let onMessageChange = () => {
-        props.onMessageChange(newMessageElement.current.value);
+    onMessageChange = () => {
+        this.props.onMessageChange(this.newMessageElement.current.value);
     }
-    
-    return (
-        <div className={main.containerDialogs}>
-            <div className={main.dialogUserWrapper}>
-              {userDiv}
-            </div>
-            <div className={main.messageListWrapper}>
-            <h3>My messages</h3>
-            <div>
-                <textarea onChange={onMessageChange} ref={newMessageElement} value={props.dialogPage.newMessageText} />
-            </div>
-            <div>
-                <button onClick={addMessage}>add message</button>
-            </div>
-               {messageDiv}
-            </div>
-        </div>
 
-    );
+    render = () => {
+        return (
+            <div className={main.containerDialogs}>
+                <div className={main.dialogUserWrapper}>
+                    {this.props.dialogPage.userList.map(user => <DialogUser name={user.name} id={user.id} />)}
+                </div>
+                <div className={main.messageListWrapper}>
+                    <h3>My messages</h3>
+                    <div>
+                        <textarea onChange={this.onMessageChange} ref={this.newMessageElement} value={this.props.dialogPage.newMessageText} />
+                    </div>
+                    <div>
+                        <button onClick={this.addMessage}>add message</button>
+                    </div>
+                    {this.props.dialogPage.messageList.map(m => <Message message={m.message} id={m.id} />)}
+                </div>
+            </div>
+
+        );
+    }
 }
 
 export default Dialogs;
