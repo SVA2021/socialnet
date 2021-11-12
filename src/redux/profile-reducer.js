@@ -4,7 +4,9 @@ const USER_UNFOLLOW = 'USER_UNFOLLOW';
 
 
 let initialState = {
-    userProfileList: [
+    userProfileList: [] 
+}; 
+/*
         {
             id: 1, followed: false,
             avatarURL: 'https://cs13.pikabu.ru/avatars/3425/x3425772-1402976383.png',
@@ -26,16 +28,17 @@ let initialState = {
             location: { city: 'Minsk', country: 'Belarus' },
             headMessage: 'Let me free universe'
         }
-    ],
-    newID: 4
+    ]
 };
-
+*/
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_STATE: {
+            //debugger
             return {
                 ...state,
-                userProfileList: [...state.userProfileList, ...action.userProfileList]
+               userProfileList: 
+               [...state.userProfileList, ...action.userProfileList]
             }
         }
         case USER_FOLLOW: {
@@ -70,3 +73,4 @@ const profileReducer = (state = initialState, action) => {
 export default profileReducer;
 export const userFollowAC = (userID) => ({ type: USER_FOLLOW, userID });
 export const userUnfollowAC = (userID) => ({ type: USER_UNFOLLOW, userID });
+export const setStateAC = (userProfileList) => ({ type: SET_STATE, userProfileList });

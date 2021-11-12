@@ -1,5 +1,6 @@
 import React from "react";
 import main from "./Profile.module.css"
+import axios from "axios";
 
 const Profile = (props) => {
     //debugger;
@@ -30,15 +31,29 @@ const Profile = (props) => {
     );
 }
 
-const ProfileList = (props) => {
 
+const ProfileList = (props) => {
+    const GetUserProfile = () => {
+        return (
+            <button onClick={getProfile}>GetUserProfile</button>
+        );
+    }
+
+    function getProfile() {
+//can not make request to direct url, need to specify exact page
+        axios.get(`http://localhost:8000/profilePage`)
+            .then(responce => {
+                props.setState(responce.data.userProfileList);
+            });
+    }
     //debugger;
-    let profileBatch = props.profilePage.userProfileList.map((user) =>
+    let profileBatch = props.userProfileList.map((user) =>
         <Profile user={user} userUnfollow={props.userUnfollow} userFollow={props.userFollow} />
     );
 
     return (
         <div className={main.parentProfile}>
+            <GetUserProfile />
             {profileBatch}
         </div>
     );
