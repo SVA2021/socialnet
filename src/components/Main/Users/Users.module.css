@@ -1,0 +1,55 @@
+.parentProfile{
+    position: relative;
+}
+
+.userProfile{
+    display: flex;
+    margin: 20px;
+    padding: 10px;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color:chartreuse;
+}
+
+.item{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.avatarURL {
+    width: 100px;
+    height: 100px;
+}
+
+.fullname, .location {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.pages {
+    display: flex;
+    margin: 10px;
+    padding: 10px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.pages span {
+    margin: 5px 15px;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    display: block;
+    background-color:darkorange;
+    border: 3px solid black;
+}
+
+.pages span.active {
+    font-weight: bold;
+}

@@ -1,10 +1,15 @@
 const SET_STATE = 'SET_STATE';
 const USER_FOLLOW = 'USER_FOLLOW';
 const USER_UNFOLLOW = 'USER_UNFOLLOW';
+const SET_USER_BASE = 'SET_USER_BASE';
+const SET_ACTIVE_PAGE = 'SET_ACTIVE_PAGE';
 
 
 let initialState = {
-    userProfileList: [] 
+    userList: [],
+    userTotal: 0,
+    pageLimit: 10,
+    activePage: 1 
 }; 
 /*
         {
@@ -31,21 +36,21 @@ let initialState = {
     ]
 };
 */
-const profileReducer = (state = initialState, action) => {
+const usersReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_STATE: {
             //debugger
             return {
                 ...state,
-               userProfileList: 
-               [...state.userProfileList, ...action.userProfileList]
+               userList: 
+               [...state.userList, ...action.userList]
             }
         }
         case USER_FOLLOW: {
             // debugger
             return {
                 ...state,
-                userProfileList: state.userProfileList.map((user) => {
+                userList: state.userList.map((user) => {
                     if (user.id === action.userID) {
                         return { ...user, followed: true }
                     }
@@ -57,7 +62,7 @@ const profileReducer = (state = initialState, action) => {
             // debugger
             return {
                 ...state,
-                userProfileList: state.userProfileList.map((user) => {
+                userList: state.userList.map((user) => {
                     if (user.id === action.userID) {
                         return { ...user, followed: false }
                     }
@@ -65,12 +70,30 @@ const profileReducer = (state = initialState, action) => {
                 }),
             }
         }
+        case SET_USER_BASE: {
+            //debugger
+            return {
+                ...state,
+                userTotal: action.userSetup.userTotal,
+                pageLimit: action.userSetup.pageLimit
+            }
+        }
+        case SET_ACTIVE_PAGE: {
+            //debugger
+            return {
+                ...state,
+                userList: [],
+                activePage: action.activePage
+            }
+        }
         default:
             return state
     }
 }
 
-export default profileReducer;
+export default usersReducer;
 export const userFollowAC = (userID) => ({ type: USER_FOLLOW, userID });
 export const userUnfollowAC = (userID) => ({ type: USER_UNFOLLOW, userID });
-export const setStateAC = (userProfileList) => ({ type: SET_STATE, userProfileList });
+export const setStateAC = (userList) => ({ type: SET_STATE, userList });
+export const setUserBaseAC = (userSetup) => ({ type: SET_USER_BASE, userSetup });
+export const setActivePageAC = (activePage) => ({ type: SET_ACTIVE_PAGE, activePage });
