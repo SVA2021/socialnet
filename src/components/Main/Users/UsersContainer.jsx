@@ -1,6 +1,6 @@
-import React from "react";
+// import React from "react";
 import { connect } from "react-redux";
-import { userFollowAC, userUnfollowAC, setStateAC, setUserBaseAC, setActivePageAC } from "../../../redux/users-reducer";
+import { userFollow, userUnfollow, setState, setUserBase, setActivePage } from "../../../redux/users-reducer";
 import UsersAPI from "./UsersAPI";
 
 let mapStateToProps = (state) => {
@@ -13,16 +13,17 @@ let mapStateToProps = (state) => {
     };
 }
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        userFollow: (userID) => { dispatch(userFollowAC(userID)) },
-        userUnfollow: (userID) => { dispatch(userUnfollowAC(userID)) },
-        setState: (userList) => { dispatch(setStateAC(userList)) },
-        setUserBase: (userSetup) => { dispatch(setUserBaseAC(userSetup)) },
-        setActivePage: (activePage) => { dispatch(setActivePageAC(activePage)) }
-    }
-}
+// let mapDispatchToProps = (dispatch) => {
+//     return {
+//         userFollow: (userID) => { dispatch(userFollowAC(userID)) },
+//         userUnfollow: (userID) => { dispatch(userUnfollowAC(userID)) },
+//         setState: (userList) => { dispatch(setStateAC(userList)) },
+//         setUserBase: (userSetup) => { dispatch(setUserBaseAC(userSetup)) },
+//         setActivePage: (activePage) => { dispatch(setActivePageAC(activePage)) }
+//     }
+// }
 
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPI);
+const UsersContainer = connect(mapStateToProps, 
+    { userFollow, userUnfollow, setState, setUserBase, setActivePage })(UsersAPI);
 
 export default UsersContainer;

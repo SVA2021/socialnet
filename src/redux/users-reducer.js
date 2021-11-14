@@ -94,8 +94,8 @@ const usersReducer = (state = initialState, action) => {
 }
 
 export default usersReducer;
-export const userFollowAC = (userID) => ({ type: USER_FOLLOW, userID });
-export const userUnfollowAC = (userID) => ({ type: USER_UNFOLLOW, userID });
-export const setStateAC = (userList) => ({ type: SET_STATE, userList });
-export const setUserBaseAC = (userSetup) => ({ type: SET_USER_BASE, userSetup });//userSetup is object with userTotal and pageLimit keys
-export const setActivePageAC = (activePage) => ({ type: SET_ACTIVE_PAGE, activePage });
+export const userFollow = (userID) => ({ type: USER_FOLLOW, userID });
+export const userUnfollow = (userID) => ({ type: USER_UNFOLLOW, userID });
+export const setState = (userList) => ({ type: SET_STATE, userList });
+export const setUserBase = (userSetup) => ({ type: SET_USER_BASE, userSetup });//userSetup is object with userTotal and pageLimit keys
+export const setActivePage = (activePage) => ({ type: SET_ACTIVE_PAGE, activePage });
