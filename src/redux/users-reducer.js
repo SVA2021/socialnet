@@ -9,7 +9,8 @@ let initialState = {
     userList: [],
     userTotal: 0,
     pageLimit: 10,
-    activePage: 1 
+    activePage: 1,
+    isLoad: false 
 }; 
 /*
         {
@@ -43,7 +44,8 @@ const usersReducer = (state = initialState, action) => {
             return {
                 ...state,
                userList: 
-               [...state.userList, ...action.userList]
+               [...state.userList, ...action.userList],
+               isLoad: false
             }
         }
         case USER_FOLLOW: {
@@ -71,19 +73,19 @@ const usersReducer = (state = initialState, action) => {
             }
         }
         case SET_USER_BASE: {
-            //debugger
             return {
                 ...state,
                 userTotal: action.userSetup.userTotal,
-                pageLimit: action.userSetup.pageLimit
+                pageLimit: action.userSetup.pageLimit,
+                isLoad: true
             }
         }
         case SET_ACTIVE_PAGE: {
-            //debugger
             return {
                 ...state,
-                userList: [],
-                activePage: action.activePage
+                userList: [],//need to clear state and render new users list
+                activePage: action.activePage,
+                isLoad: true
             }
         }
         default:
@@ -95,5 +97,5 @@ export default usersReducer;
 export const userFollowAC = (userID) => ({ type: USER_FOLLOW, userID });
 export const userUnfollowAC = (userID) => ({ type: USER_UNFOLLOW, userID });
 export const setStateAC = (userList) => ({ type: SET_STATE, userList });
-export const setUserBaseAC = (userSetup) => ({ type: SET_USER_BASE, userSetup });
+export const setUserBaseAC = (userSetup) => ({ type: SET_USER_BASE, userSetup });//userSetup is object with userTotal and pageLimit keys
 export const setActivePageAC = (activePage) => ({ type: SET_ACTIVE_PAGE, activePage });

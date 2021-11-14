@@ -1,14 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
 import { userFollowAC, userUnfollowAC, setStateAC, setUserBaseAC, setActivePageAC } from "../../../redux/users-reducer";
-import Users from "./Users";
+import UsersAPI from "./UsersAPI";
 
 let mapStateToProps = (state) => {
     return {
         userList: state.userPage.userList,
         userTotal: state.userPage.userTotal,
         pageLimit: state.userPage.pageLimit,
-        activePage: state.userPage.activePage
+        activePage: state.userPage.activePage,
+        isLoad: state.userPage.isLoad
     };
 }
 
@@ -22,6 +23,6 @@ let mapDispatchToProps = (dispatch) => {
     }
 }
 
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users);
+const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPI);
 
 export default UsersContainer;

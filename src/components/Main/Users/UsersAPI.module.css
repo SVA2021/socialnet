@@ -1,0 +1,27 @@
+.parentProfile{
+    position: relative;
+}
+
+.pages {
+    display: flex;
+    margin: 10px;
+    padding: 10px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.pages span {
+    margin: 5px 15px;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    display: block;
+    background-color:darkorange;
+    border: 3px solid black;
+}
+
+.pages span.active {
+    font-weight: bold;
+    background-color: red;
+}
