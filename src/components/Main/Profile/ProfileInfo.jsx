@@ -5,7 +5,7 @@ import Preloader from "../../Preloader/Preloader";
 
 
 const ProfileInfo = (props) => {
-
+// debugger
     return (
         <>
             {(props.profile.userId) ? null : <Preloader />}

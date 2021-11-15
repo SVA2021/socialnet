@@ -13,7 +13,7 @@ const Content = (props) => {
 
     return (
         <div className={main.contentWrapper}>
-            <Route path="/profile" render={() => <ProfileContainer />} />
+            <Route path="/profile/:userID?" render={() => <ProfileContainer />} />
             <Route path="/users" render={() => <UsersContainer />} />
             <Route path="/dialogs" render={() => <DialogsContainer />} /> 
             <Route path="/news" render={() => <News />} /> 
