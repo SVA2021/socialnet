@@ -1,5 +1,6 @@
 import React from "react";
-import main from "./User.module.css"
+import main from "./User.module.css";
+import { NavLink } from "react-router-dom";
 
 class User extends React.Component {
     //debugger;
@@ -10,7 +11,11 @@ class User extends React.Component {
         return (
             <div className={main.userProfile}>
                 <div className={main.item}>
-                    <img className={main.avatarURL} src={this.props.user.avatarURL} alt="user avatar" />
+                    <div>
+                        <NavLink to={"/profile/" + this.props.user.id}>
+                            <img className={main.avatarURL} src={this.props.user.avatarURL} alt="user avatar" />
+                        </NavLink>
+                    </div>
                     {(this.props.user.followed) ?
                         <button onClick={this.unfollowAction}>Unfollow</button> :
                         <button onClick={this.followAction}>Follow</button>}

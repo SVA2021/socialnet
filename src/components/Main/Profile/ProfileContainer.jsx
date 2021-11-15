@@ -1,20 +1,12 @@
-import React from "react";
+// import React from "react";
 import { connect } from "react-redux";
-import ProfileList from "./Profile";
-import { userFollowAC, userUnfollowAC, setStateAC } from "../../../redux/profile-reducer";
+import Profile from "./Profile";
+import { setProfileState } from "../../../redux/profile-reducer";
 
 let mapStateToProps = (state) => {
-    return { userProfileList: state.profilePage.userProfileList };
+    return { profile: state.profilePage.profile };
 }
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        userFollow: (userID) => { dispatch(userFollowAC(userID)) },
-        userUnfollow: (userID) => { dispatch(userUnfollowAC(userID)) },
-        setState: (userProfileList) => { dispatch(setStateAC(userProfileList)) }
-    }
-}
-
-const ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(ProfileList);
+const ProfileContainer = connect(mapStateToProps, { setProfileState })(Profile);
 
 export default ProfileContainer;

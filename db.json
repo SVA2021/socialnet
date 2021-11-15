@@ -1,32 +1,196 @@
 {
-    userList: [
+    "profile": [
         {
-            id: 1, followed: false,
-            avatarURL: 'https: //cs13.pikabu.ru/avatars/3425/x3425772-1402976383.png',
-            fullName: { name: 'Diman', surname: 'noBilan'
+            "userId": 1,
+            "aboutMe": "я круто чувак 100001%",
+            "contacts": {
+              "facebook": "facebook.commmm",
+              "vk": "vk.com/ddddd",
+              "twitter": "https://twitter.com/@sdf"
             },
-            location: { city: 'Kazan', country: 'Russia'
+            "lookingForAJob": true,
+            "lookingForAJobDescription": "не ищу, а дурачусь",
+            "fullName": "samurai segun",
+            "photos": {
+              "small": null,
+              "large": null
+            }
+          },
+          {
+            "userId": 2,
+            "aboutMe": "222я круто чувак 100001%",
+            "contacts": {
+              "facebook": "22facebook.commmm",
+              "vk": "2vk.com/ddddd",
+              "twitter": "22https://twitter.com/@sdf"
             },
-            headMessage: 'Hello world'
-        },
-        {
-            id: 2, followed: false,
-            avatarURL: 'https: //sun9-13.userapi.com/c626223/v626223284/40262/QLGVsFMkyNs.jpg',
-            fullName: { name: 'Anonim', surname: 'Nemo'
+            "lookingForAJob": false,
+            "lookingForAJobDescription": "look for frontend startup",
+            "fullName": "samurai new",
+            "photos": {
+              "small": null,
+              "large": null
+            }
+          },
+          {
+            "userId": 3,
+            "aboutMe": "я круто чувак 300001%",
+            "contacts": {
+              "facebook": "3facebook.commmm",
+              "vk": "3vk.com/ddddd",
+              "twitter": "3https://twitter.com/@sdf"
             },
-            location: { city: 'Moscow', country: 'Russia'
+            "lookingForAJob": true,
+            "lookingForAJobDescription": "ищу",
+            "fullName": "samurai old",
+            "photos": {
+              "small": null,
+              "large": null
+            }
+          },
+          {
+            "userId": 4,
+            "aboutMe": "я круто чувак 100001%",
+            "contacts": {
+              "facebook": "4facebook.commmm",
+              "vk": "444vk.com/ddddd",
+              "twitter": "https://twitter.com/@sdf"
             },
-            headMessage: 'Nobody can find me'
-        },
-        {
-            id: 3, followed: true,
-            avatarURL: 'https: //cs13.pikabu.ru/avatars/2976/x2976495-1653151219.png',
-            fullName: { name: 'Alisa', surname: 'Selezneva'
+            "lookingForAJob": true,
+            "lookingForAJobDescription": "не ищу, а дурачусь",
+            "fullName": "samurai segun",
+            "photos": {
+              "small": null,
+              "large": null
+            }
+          },
+          {
+            "userId": 5,
+            "aboutMe": "5555222я круто чувак 100001%",
+            "contacts": {
+              "facebook": "22facebook.commmm",
+              "vk": "2vk.com/ddddd",
+              "twitter": "22https://twitter.com/@sdf"
             },
-            location: { city: 'Minsk', country: 'Belarus'
+            "lookingForAJob": false,
+            "lookingForAJobDescription": "look for frontend startup",
+            "fullName": "samurai new",
+            "photos": {
+              "small": null,
+              "large": null
+            }
+          },
+          {
+            "userId": 6,
+            "aboutMe": "6я круто чувак 300001%",
+            "contacts": {
+              "facebook": "63facebook.commmm",
+              "vk": "63vk.com/ddddd",
+              "twitter": "3https://twitter.com/@sdf"
             },
-            headMessage: 'Let me free universe'
-        }
-    ],
-    newID: 4
+            "lookingForAJob": true,
+            "lookingForAJobDescription": "ищу",
+            "fullName": "samurai old",
+            "photos": {
+              "small": null,
+              "large": null
+            }
+          },
+          {
+            "userId": 7,
+            "aboutMe": "777я круто чувак 100001%",
+            "contacts": {
+              "facebook": "777facebook.commmm",
+              "vk": "777vk.com/ddddd",
+              "twitter": "777https://twitter.com/@sdf"
+            },
+            "lookingForAJob": true,
+            "lookingForAJobDescription": "не ищу, а дурачусь",
+            "fullName": "samurai segun",
+            "photos": {
+              "small": null,
+              "large": null
+            }
+          },
+          {
+            "userId": 8,
+            "aboutMe": "888222я круто чувак 100001%",
+            "contacts": {
+              "facebook": "8822facebook.commmm",
+              "vk": "882vk.com/ddddd",
+              "twitter": "22https://twitter.com/@sdf"
+            },
+            "lookingForAJob": false,
+            "lookingForAJobDescription": "look for frontend startup",
+            "fullName": "samurai new",
+            "photos": {
+              "small": null,
+              "large": null
+            }
+          },
+          {
+            "userId": 9,
+            "aboutMe": "99я круто чувак 300001%",
+            "contacts": {
+              "facebook": "93facebook.commmm",
+              "vk": "93vk.com/ddddd",
+              "twitter": "3https://twitter.com/@sdf"
+            },
+            "lookingForAJob": true,
+            "lookingForAJobDescription": "ищу",
+            "fullName": "samurai old",
+            "photos": {
+              "small": null,
+              "large": null
+            }
+          },
+          {
+            "userId": 10,
+            "aboutMe": "10я круто чувак 100001%",
+            "contacts": {
+              "facebook": "10facebook.commmm",
+              "vk": "10vk.com/ddddd",
+              "twitter": "https://twitter.com/@sdf"
+            },
+            "lookingForAJob": true,
+            "lookingForAJobDescription": "не ищу, а дурачусь",
+            "fullName": "samurai segun",
+            "photos": {
+              "small": null,
+              "large": null
+            }
+          },
+          {
+            "userId": 11,
+            "aboutMe": "111222я круто чувак 100001%",
+            "contacts": {
+              "facebook": "11122facebook.commmm",
+              "vk": "1112vk.com/ddddd",
+              "twitter": "22https://twitter.com/@sdf"
+            },
+            "lookingForAJob": false,
+            "lookingForAJobDescription": "look for frontend startup",
+            "fullName": "samurai new",
+            "photos": {
+              "small": null,
+              "large": null
+            }
+          },
+          {
+            "userId": 12,
+            "aboutMe": "12я круто чувак 300001%",
+            "contacts": {
+              "facebook": "123facebook.commmm",
+              "vk": "123vk.com/ddddd",
+              "twitter": "123https://twitter.com/@sdf"
+            },
+            "lookingForAJob": true,
+            "lookingForAJobDescription": "ищу",
+            "fullName": "samurai old",
+            "photos": {
+              "small": null,
+              "large": null
+            }
+          }
+    ]
 }
