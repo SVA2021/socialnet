@@ -8,7 +8,7 @@ const SET_ACTIVE_PAGE = 'SET_ACTIVE_PAGE';
 let initialState = {
     //get from server
     items: [],
-    totalCount: 15,
+    totalCount: 0,
     //set by user
     pageLimit: 5, // now fixed
     activePage: 1,
@@ -49,12 +49,12 @@ new config
 const usersReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_STATE: {
-            //debugger
+            debugger
             return {
                 ...state,
                 items: 
-               [...state.items, ...action.items],
-               //totalCount: action.totalCount,
+               [...state.items, ...action.itemData.items],
+               totalCount: action.itemData.totalCount,
                isLoad: false
             }
         }
@@ -99,6 +99,6 @@ const usersReducer = (state = initialState, action) => {
 export default usersReducer;
 export const userFollow = (userID) => ({ type: USER_FOLLOW, userID });
 export const userUnfollow = (userID) => ({ type: USER_UNFOLLOW, userID });
-export const setState = (items) => ({ type: SET_STATE, items });
+export const setState = (itemData) => ({ type: SET_STATE, itemData });
 // export const setUserBase = (userSetup) => ({ type: SET_USER_BASE, userSetup });//userSetup is object with userTotal and pageLimit keys
 export const setActivePage = (activePage) => ({ type: SET_ACTIVE_PAGE, activePage });

@@ -7,7 +7,7 @@ import Preloader from "../../Preloader/Preloader";
 class UsersAPI extends React.Component {
 
     componentDidMount() {
-        axios.get(`http://localhost:8000/items?_page=${this.props.activePage}&_limit=${this.props.pageLimit}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.activePage}`)
             .then(responce => {
                 this.props.setState(responce.data);
             });
@@ -24,7 +24,7 @@ class UsersAPI extends React.Component {
         this.setActivePage = (p) => {
             this.props.setActivePage(p);
 
-            axios.get(`http://localhost:8000/items?_page=${p}&_limit=${this.props.pageLimit}`)
+            axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}`)
                 .then(responce => {
                     this.props.setState(responce.data);
                 });
@@ -35,11 +35,19 @@ class UsersAPI extends React.Component {
 
                 {/* //pagination */}
                 <div className={main.pages}>
+
                     {pages.map((p) => {
+                    if (p <= 3 || p >= pages.length - 2)
+                    {
                         return (<span onClick={() => this.setActivePage(p)}
                             className={(p === this.props.activePage) ? main.active : null}>
                             {p}</span>)
                     }
+                    if ((pages.length > 9) && (p === Math.ceil(pages.length - 4))) {
+                       return <span>...</span>
+                    }
+
+                }
                     )}
                 </div>
 
