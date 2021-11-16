@@ -13,7 +13,7 @@ class User extends React.Component {
                 <div className={main.item}>
                     <div>
                         <NavLink to={"/profile/" + this.props.user.id}>
-                            <img className={main.avatarURL} src={this.props.user.avatarURL} alt="user avatar" />
+                            <img className={main.avatarURL} src={this.props.user.photos.small} alt="user avatar" />
                         </NavLink>
                     </div>
                     {(this.props.user.followed) ?
@@ -21,16 +21,15 @@ class User extends React.Component {
                         <button onClick={this.followAction}>Follow</button>}
                 </div>
                 <div className={main.item}>
-                    <p>{this.props.user.headMessage}</p>
+                    <p>{this.props.user.status}</p>
                 </div>
                 <div className={main.item}>
                     <div className={main.fullname}>
-                        <span>{this.props.user.fullName.name}</span>
-                        <span>{this.props.user.fullName.surname}</span>
+                        <span>{this.props.user.id}</span>
+                        <span>{this.props.user.name}</span>
                     </div>
                     <div className={main.location}>
-                        <span>{this.props.user.location.city}</span>
-                        <span>{this.props.user.location.country}</span>
+                        <span>{this.props.user.uniqueUrlName}</span>
                     </div>
                 </div>
             </div>

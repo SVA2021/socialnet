@@ -1,41 +1,50 @@
 const SET_STATE = 'SET_STATE';
 const USER_FOLLOW = 'USER_FOLLOW';
 const USER_UNFOLLOW = 'USER_UNFOLLOW';
-const SET_USER_BASE = 'SET_USER_BASE';
+// const SET_USER_BASE = 'SET_USER_BASE';
 const SET_ACTIVE_PAGE = 'SET_ACTIVE_PAGE';
 
 
 let initialState = {
-    userList: [],
-    userTotal: 0,
-    pageLimit: 10,
+    //get from server
+    items: [],
+    totalCount: 15,
+    //set by user
+    pageLimit: 5, // now fixed
     activePage: 1,
-    isLoad: false 
+    isLoad: true 
 }; 
-/*
+/* old config
         {
             id: 1, followed: false,
             avatarURL: 'https://cs13.pikabu.ru/avatars/3425/x3425772-1402976383.png',
             fullName: { name: 'Diman', surname: 'noBilan' },
             location: { city: 'Kazan', country: 'Russia' },
             headMessage: 'Hello world'
-        },
-        {
-            id: 2, followed: false,
-            avatarURL: 'https://sun9-13.userapi.com/c626223/v626223284/40262/QLGVsFMkyNs.jpg',
-            fullName: { name: 'Anonim', surname: 'Nemo' },
-            location: { city: 'Moscow', country: 'Russia' },
-            headMessage: 'Nobody can find me'
-        },
-        {
-            id: 3, followed: true,
-            avatarURL: 'https://cs13.pikabu.ru/avatars/2976/x2976495-1653151219.png',
-            fullName: { name: 'Alisa', surname: 'Selezneva' },
-            location: { city: 'Minsk', country: 'Belarus' },
-            headMessage: 'Let me free universe'
         }
     ]
 };
+
+// ///////////////////////////////
+new config
+
+{
+    "items": [
+        {
+            "name": "NatalliaLanina",
+            "id": 20801,
+            "uniqueUrlName": null,
+            "photos": {
+                "small": null,
+                "large": null
+            },
+            "status": null,
+            "followed": false
+        },
+    ],
+    "totalCount": 15827,
+    "error": null
+}
 */
 const usersReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -43,8 +52,9 @@ const usersReducer = (state = initialState, action) => {
             //debugger
             return {
                 ...state,
-               userList: 
-               [...state.userList, ...action.userList],
+                items: 
+               [...state.items, ...action.items],
+               //totalCount: action.totalCount,
                isLoad: false
             }
         }
@@ -52,7 +62,7 @@ const usersReducer = (state = initialState, action) => {
             // debugger
             return {
                 ...state,
-                userList: state.userList.map((user) => {
+                items: state.items.map((user) => {
                     if (user.id === action.userID) {
                         return { ...user, followed: true }
                     }
@@ -64,7 +74,7 @@ const usersReducer = (state = initialState, action) => {
             // debugger
             return {
                 ...state,
-                userList: state.userList.map((user) => {
+                items: state.items.map((user) => {
                     if (user.id === action.userID) {
                         return { ...user, followed: false }
                     }
@@ -72,18 +82,11 @@ const usersReducer = (state = initialState, action) => {
                 }),
             }
         }
-        case SET_USER_BASE: {
-            return {
-                ...state,
-                userTotal: action.userSetup.userTotal,
-                pageLimit: action.userSetup.pageLimit,
-                isLoad: true
-            }
-        }
         case SET_ACTIVE_PAGE: {
+            // debugger
             return {
                 ...state,
-                userList: [],//need to clear state and render new users list
+                items: [],//need to clear state and render new users list
                 activePage: action.activePage,
                 isLoad: true
             }
@@ -96,6 +99,6 @@ const usersReducer = (state = initialState, action) => {
 export default usersReducer;
 export const userFollow = (userID) => ({ type: USER_FOLLOW, userID });
 export const userUnfollow = (userID) => ({ type: USER_UNFOLLOW, userID });
-export const setState = (userList) => ({ type: SET_STATE, userList });
-export const setUserBase = (userSetup) => ({ type: SET_USER_BASE, userSetup });//userSetup is object with userTotal and pageLimit keys
+export const setState = (items) => ({ type: SET_STATE, items });
+// export const setUserBase = (userSetup) => ({ type: SET_USER_BASE, userSetup });//userSetup is object with userTotal and pageLimit keys
 export const setActivePage = (activePage) => ({ type: SET_ACTIVE_PAGE, activePage });

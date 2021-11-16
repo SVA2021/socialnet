@@ -1,29 +1,19 @@
 // import React from "react";
 import { connect } from "react-redux";
-import { userFollow, userUnfollow, setState, setUserBase, setActivePage } from "../../../redux/users-reducer";
+import { userFollow, userUnfollow, setState, setActivePage } from "../../../redux/users-reducer";
 import UsersAPI from "./UsersAPI";
 
 let mapStateToProps = (state) => {
     return {
-        userList: state.userPage.userList,
-        userTotal: state.userPage.userTotal,
+        items: state.userPage.items,
+        totalCount: state.userPage.totalCount,
         pageLimit: state.userPage.pageLimit,
         activePage: state.userPage.activePage,
         isLoad: state.userPage.isLoad
     };
 }
 
-// let mapDispatchToProps = (dispatch) => {
-//     return {
-//         userFollow: (userID) => { dispatch(userFollowAC(userID)) },
-//         userUnfollow: (userID) => { dispatch(userUnfollowAC(userID)) },
-//         setState: (userList) => { dispatch(setStateAC(userList)) },
-//         setUserBase: (userSetup) => { dispatch(setUserBaseAC(userSetup)) },
-//         setActivePage: (activePage) => { dispatch(setActivePageAC(activePage)) }
-//     }
-// }
-
 const UsersContainer = connect(mapStateToProps, 
-    { userFollow, userUnfollow, setState, setUserBase, setActivePage })(UsersAPI);
+    { userFollow, userUnfollow, setState, setActivePage })(UsersAPI);
 
 export default UsersContainer;
