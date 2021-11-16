@@ -3,7 +3,7 @@ import main from "./LoginBar.module.css";
 
 const LoginBar = (props) => {
     // debugger
-    let user = (props.resultCode) ? props.info.login : 'Please login';
+    let user = (!props.resultCode) ? props.data.login : 'Please login';
     return (
         <div className={main.parent}>
             {user}

@@ -4,7 +4,7 @@ let initialState = {
   
   resultCode: 0,
   messages: [],
-  info: {}
+  data: {}
 };
 /*
 {
@@ -20,7 +20,7 @@ let initialState = {
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_AUTH_STATE: {
-      debugger
+      // debugger
       return {
         ...action.userInfo
       }

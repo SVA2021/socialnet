@@ -10,7 +10,7 @@ class LoginBarContainer extends React.Component {
 
     requestData() {//difference request depend on server rules
         // debugger
-        axios.get(`http://localhost:8000/auth/1`) //test address
+        axios.get(`https://social-network.samuraijs.com/api/1.0//auth/me`, {withCredentials: true}) //test address
             .then(responce => {
                 // debugger
                 this.props.setAuthState(responce.data);

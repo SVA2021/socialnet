@@ -11,7 +11,7 @@ class ProfileContainer extends React.Component {
     requestData() {//difference request depend on server rules
         // debugger
         let userID = this.props.match.params.userID;
-        axios.get(`http://localhost:8000/profile/` + userID) //test address
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userID) //test address
             .then(responce => {
                 // debugger
                 this.props.setProfileState(responce.data);

@@ -49,7 +49,7 @@ new config
 const usersReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_STATE: {
-            debugger
+            // debugger
             return {
                 ...state,
                 items: 

@@ -1,6 +1,7 @@
 .parent {
     margin: 0;
-    padding: 15px 5px 15px 0;
+    height: 30px;
+    padding: 5px 25px;
     color: #ffe;
     text-decoration: none;
     background: #b9732f;
