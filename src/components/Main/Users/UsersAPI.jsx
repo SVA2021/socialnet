@@ -7,7 +7,11 @@ import Preloader from "../../Preloader/Preloader";
 class UsersAPI extends React.Component {
 
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.activePage}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.activePage}`,
+        {
+            withCredentials: true
+        }
+        )
             .then(responce => {
                 this.props.setState(responce.data);
             });
@@ -24,7 +28,10 @@ class UsersAPI extends React.Component {
         this.setActivePage = (p) => {
             this.props.setActivePage(p);
 
-            axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}`)
+            axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}`,
+            {
+                withCredentials: true
+            })
                 .then(responce => {
                     this.props.setState(responce.data);
                 });
