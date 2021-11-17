@@ -2,18 +2,13 @@ import React from "react";
 import main from "./UsersAPI.module.css"
 import User from "./User.jsx";
 import Preloader from "../../Preloader/Preloader";
-import { usersAPI } from "../../../API/api.js";
 
 class UsersAPI extends React.Component {
 
     componentDidMount() {
-
-        usersAPI.getUsers(this.props.activePage, this.props.pageLimit)
-            .then(responce => {
-                this.props.setState(responce.data);
-            });
-
+        this.props.getUsersThunk(this.props.activePage, this.props.pageLimit);
     }
+
     render = () => {
 
         let pages = [];
@@ -24,13 +19,7 @@ class UsersAPI extends React.Component {
         }
 
         this.setActivePage = (p) => {
-            this.props.setActivePage(p);
-
-            usersAPI.getUsers(p, this.props.pageLimit)
-            .then(responce => {
-                this.props.setState(responce.data);
-            });
-
+            this.props.setActivePageThunk(p, this.props.pageLimit)
         }
         return (
             <div className={main.parentProfile}>
@@ -55,8 +44,10 @@ class UsersAPI extends React.Component {
 
                 {/* users rendering */}
                 {this.props.items.map((user) =>
-                    <User user={user} userUnfollow={this.props.userUnfollow} answerStatus={this.props.answerStatus}
-                        userFollow={this.props.userFollow} setAnswerStatus={this.props.setAnswerStatus}/>)}
+                    <User user={user} 
+                    // userUnfollow={this.props.userUnfollow} answerStatus={this.props.answerStatus}
+                    //     userFollow={this.props.userFollow} setAnswerStatus={this.props.setAnswerStatus}
+                        followThunk={this.props.followThunk} unfollowThunk={this.props.unfollowThunk} />)}
             </div>
         );
     }

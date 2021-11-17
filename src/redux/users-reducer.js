@@ -1,7 +1,8 @@
+import { usersAPI, followAPI } from "../API/api.js";
+
 const SET_STATE = 'SET_STATE';
 const USER_FOLLOW = 'USER_FOLLOW';
 const USER_UNFOLLOW = 'USER_UNFOLLOW';
-// const SET_USER_BASE = 'SET_USER_BASE';
 const SET_ACTIVE_PAGE = 'SET_ACTIVE_PAGE';
 const SET_ANSWER_STATUS = 'SET_ANSWER_STATUS';
 
@@ -15,7 +16,7 @@ let initialState = {
     activePage: 1,
     isLoad: true,
     answerStatus: 0 // userID
-}; 
+};
 /* 
 {
     "items": [
@@ -41,10 +42,10 @@ const usersReducer = (state = initialState, action) => {
             // debugger
             return {
                 ...state,
-                items: 
-               [...state.items, ...action.itemData.items],
-               totalCount: action.itemData.totalCount,
-               isLoad: false
+                items:
+                    [...state.items, ...action.itemData.items],
+                totalCount: action.itemData.totalCount,
+                isLoad: false
             }
         }
         case USER_FOLLOW: {
@@ -60,7 +61,7 @@ const usersReducer = (state = initialState, action) => {
             }
         }
         case USER_UNFOLLOW: {
-            debugger
+            // debugger
             return {
                 ...state,
                 items: state.items.map((user) => {
@@ -81,7 +82,7 @@ const usersReducer = (state = initialState, action) => {
             }
         }
         case SET_ANSWER_STATUS: {
-            debugger
+            // debugger
             return {
                 ...state,
                 answerStatus: action.userID,
@@ -96,6 +97,50 @@ export default usersReducer;
 export const userFollow = (userID) => ({ type: USER_FOLLOW, userID });
 export const userUnfollow = (userID) => ({ type: USER_UNFOLLOW, userID });
 export const setState = (itemData) => ({ type: SET_STATE, itemData });
-// export const setUserBase = (userSetup) => ({ type: SET_USER_BASE, userSetup });//userSetup is object with userTotal and pageLimit keys
 export const setActivePage = (activePage) => ({ type: SET_ACTIVE_PAGE, activePage });
 export const setAnswerStatus = (userID) => ({ type: SET_ANSWER_STATUS, userID });
+
+export const getUsersThunk = (activePage, pageLimit) => {
+    return (dispatch) => {
+        usersAPI.getUsers(activePage, pageLimit)
+            .then(responce => {
+                dispatch(setState(responce.data));
+            });
+    }
+}
+
+export const setActivePageThunk = (activePage, pageLimit) => {
+    return (dispatch) => {
+        dispatch(setActivePage(activePage, pageLimit));
+        usersAPI.getUsers(activePage, pageLimit)
+            .then(responce => {
+                dispatch(setState(responce.data));
+            });
+    }
+}
+
+export const followThunk = (userID) => {
+    return (dispatch) => {
+        dispatch(setAnswerStatus(userID));
+        followAPI.setFollow(userID)
+            .then(responce => {
+                if (responce.data.resultCode === 0) {
+                    dispatch(userFollow(userID));
+                    dispatch(setAnswerStatus(0));
+                }
+            })
+    }
+}
+
+export const unfollowThunk = (userID) => {
+    return (dispatch) => {
+        dispatch(setAnswerStatus(userID));
+        followAPI.setUnfollow(userID)
+            .then(responce => {
+                if (responce.data.resultCode === 0) {
+                    dispatch(userUnfollow(userID));
+                    dispatch(setAnswerStatus(0));
+                }
+            })
+    }
+}

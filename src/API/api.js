@@ -10,6 +10,7 @@ export const instance = axios.create({
 
 export const usersAPI = {
     getUsers (activePage = 1, pageLimit = 5) {
+        // debugger
     return instance.get(`users?page=${activePage}&count=${pageLimit}`,
         {
             withCredentials: true
