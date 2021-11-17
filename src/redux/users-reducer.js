@@ -3,6 +3,7 @@ const USER_FOLLOW = 'USER_FOLLOW';
 const USER_UNFOLLOW = 'USER_UNFOLLOW';
 // const SET_USER_BASE = 'SET_USER_BASE';
 const SET_ACTIVE_PAGE = 'SET_ACTIVE_PAGE';
+const SET_ANSWER_STATUS = 'SET_ANSWER_STATUS';
 
 
 let initialState = {
@@ -12,22 +13,10 @@ let initialState = {
     //set by user
     pageLimit: 5, // now fixed
     activePage: 1,
-    isLoad: true 
+    isLoad: true,
+    answerStatus: 0 // userID
 }; 
-/* old config
-        {
-            id: 1, followed: false,
-            avatarURL: 'https://cs13.pikabu.ru/avatars/3425/x3425772-1402976383.png',
-            fullName: { name: 'Diman', surname: 'noBilan' },
-            location: { city: 'Kazan', country: 'Russia' },
-            headMessage: 'Hello world'
-        }
-    ]
-};
-
-// ///////////////////////////////
-new config
-
+/* 
 {
     "items": [
         {
@@ -71,7 +60,7 @@ const usersReducer = (state = initialState, action) => {
             }
         }
         case USER_UNFOLLOW: {
-            // debugger
+            debugger
             return {
                 ...state,
                 items: state.items.map((user) => {
@@ -91,6 +80,13 @@ const usersReducer = (state = initialState, action) => {
                 isLoad: true
             }
         }
+        case SET_ANSWER_STATUS: {
+            debugger
+            return {
+                ...state,
+                answerStatus: action.userID,
+            }
+        }
         default:
             return state
     }
@@ -102,3 +98,4 @@ export const userUnfollow = (userID) => ({ type: USER_UNFOLLOW, userID });
 export const setState = (itemData) => ({ type: SET_STATE, itemData });
 // export const setUserBase = (userSetup) => ({ type: SET_USER_BASE, userSetup });//userSetup is object with userTotal and pageLimit keys
 export const setActivePage = (activePage) => ({ type: SET_ACTIVE_PAGE, activePage });
+export const setAnswerStatus = (userID) => ({ type: SET_ANSWER_STATUS, userID });

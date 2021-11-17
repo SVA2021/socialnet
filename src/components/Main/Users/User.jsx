@@ -2,49 +2,42 @@ import React from "react";
 import main from "./User.module.css";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+import { followAPI } from "../../../API/api";
 
 class User extends React.Component {
     //debugger;
-    unfollowAction = (userID) => {
+    unfollowAction = () => {
 
         // debugger
-        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/` + this.props.user.id,
-            {
-                withCredentials: true,
-                headers: {
-                    'API-KEY': '30256688-2360-4496-aaab-8e45acf8cc2e'
-                }
+        this.props.setAnswerStatus(this.props.user.id);
 
-            })
+        followAPI.setUnfollow(this.props.user.id)
             .then(responce => {
                 // debugger
+                // console.log(responce.data);
                 if (responce.data.resultCode === 0) {
                     this.props.userUnfollow(this.props.user.id)
+                    this.props.setAnswerStatus(0);
                 }
-            });
+            })
+
 
     };
-    followAction = (userID) => { 
+    followAction = () => {
 
-        debugger
-        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/` + this.props.user.id, {},
-            {
-                withCredentials: true,
-                headers: {
-                    'API-KEY': '30256688-2360-4496-aaab-8e45acf8cc2e'
-                }
+        // debugger
+       
+        this.props.setAnswerStatus(this.props.user.id);
 
-            })
+        followAPI.setFollow(this.props.user.id)
             .then(responce => {
                 debugger
-                console.log(responce.data);
+                // console.log(responce.data);
                 if (responce.data.resultCode === 0) {
-                    this.props.userFollow(this.props.user.id) 
+                    this.props.userFollow(this.props.user.id)
+                    this.props.setAnswerStatus(0);
                 }
             })
-            .catch(function (error) {
-                console.log(error);
-              });
 
 
     };
@@ -59,8 +52,10 @@ class User extends React.Component {
                         </NavLink>
                     </div>
                     {(this.props.user.followed)
-                        ? <button onClick={this.unfollowAction}>Unfollow</button>
-                        : <button onClick={this.followAction}>Follow</button>}
+                        ? <button disabled={(this.props.answerStatus !== 0) && (this.props.answerStatus === this.props.user.id)}
+                            onClick={this.unfollowAction}> Unfollow </button>
+                        : <button disabled={(this.props.answerStatus !== 0) && (this.props.answerStatus === this.props.user.id)}
+                        onClick={this.followAction}> Follow </button>}
                 </div>
                 <div className={main.item}>
                     <p>{this.props.user.status}</p>

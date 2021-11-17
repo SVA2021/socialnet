@@ -1,20 +1,18 @@
 import React from "react";
 import main from "./UsersAPI.module.css"
-import axios from "axios";
 import User from "./User.jsx";
 import Preloader from "../../Preloader/Preloader";
+import { usersAPI } from "../../../API/api.js";
 
 class UsersAPI extends React.Component {
 
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.activePage}`,
-        {
-            withCredentials: true
-        }
-        )
+
+        usersAPI.getUsers(this.props.activePage, this.props.pageLimit)
             .then(responce => {
                 this.props.setState(responce.data);
             });
+
     }
     render = () => {
 
@@ -28,13 +26,11 @@ class UsersAPI extends React.Component {
         this.setActivePage = (p) => {
             this.props.setActivePage(p);
 
-            axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}`,
-            {
-                withCredentials: true
-            })
-                .then(responce => {
-                    this.props.setState(responce.data);
-                });
+            usersAPI.getUsers(p, this.props.pageLimit)
+            .then(responce => {
+                this.props.setState(responce.data);
+            });
+
         }
         return (
             <div className={main.parentProfile}>
@@ -44,24 +40,23 @@ class UsersAPI extends React.Component {
                 <div className={main.pages}>
 
                     {pages.map((p) => {
-                    if (p <= 3 || p >= pages.length - 2)
-                    {
-                        return (<span onClick={() => this.setActivePage(p)}
-                            className={(p === this.props.activePage) ? main.active : null}>
-                            {p}</span>)
-                    }
-                    if ((pages.length > 9) && (p === Math.ceil(pages.length - 4))) {
-                       return <span>...</span>
-                    }
+                        if (p <= 3 || p >= pages.length - 2) {
+                            return (<span onClick={() => this.setActivePage(p)}
+                                className={(p === this.props.activePage) ? main.active : null}>
+                                {p}</span>)
+                        }
+                        if ((pages.length > 9) && (p === Math.ceil(pages.length - 4))) {
+                            return <span>...</span>
+                        }
 
-                }
+                    }
                     )}
                 </div>
 
                 {/* users rendering */}
                 {this.props.items.map((user) =>
-                    <User user={user} userUnfollow={this.props.userUnfollow}
-                        userFollow={this.props.userFollow} />)}
+                    <User user={user} userUnfollow={this.props.userUnfollow} answerStatus={this.props.answerStatus}
+                        userFollow={this.props.userFollow} setAnswerStatus={this.props.setAnswerStatus}/>)}
             </div>
         );
     }
