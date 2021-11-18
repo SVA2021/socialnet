@@ -1,4 +1,4 @@
-import { usersAPI, followAPI } from "../API/api.js";
+import { usersAPI } from "../API/api.js";
 
 const SET_STATE = 'SET_STATE';
 const USER_FOLLOW = 'USER_FOLLOW';
@@ -12,7 +12,7 @@ let initialState = {
     items: [],
     totalCount: 0,
     //set by user
-    pageLimit: 5, // now fixed
+    pageLimit: 5,
     activePage: 1,
     isLoad: true,
     answerStatus: 0 // userID
@@ -122,7 +122,7 @@ export const setActivePageThunk = (activePage, pageLimit) => {
 export const followThunk = (userID) => {
     return (dispatch) => {
         dispatch(setAnswerStatus(userID));
-        followAPI.setFollow(userID)
+        usersAPI.setFollow(userID)
             .then(responce => {
                 if (responce.data.resultCode === 0) {
                     dispatch(userFollow(userID));
@@ -135,7 +135,7 @@ export const followThunk = (userID) => {
 export const unfollowThunk = (userID) => {
     return (dispatch) => {
         dispatch(setAnswerStatus(userID));
-        followAPI.setUnfollow(userID)
+        usersAPI.setUnfollow(userID)
             .then(responce => {
                 if (responce.data.resultCode === 0) {
                     dispatch(userUnfollow(userID));

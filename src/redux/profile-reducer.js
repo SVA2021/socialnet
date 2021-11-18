@@ -1,3 +1,5 @@
+import { usersAPI } from "../API/api";
+
 const SET_PROFILE_STATE = 'SET_PROFILE_STATE';
 
 let initialState = {
@@ -41,3 +43,12 @@ const profileReducer = (state = initialState, action) => {
 
 export default profileReducer;
 export const setProfileState = (profile) => ({ type: SET_PROFILE_STATE, profile });
+
+export const getProfileThunk = (userID) => {
+  return (dispatch) => {
+      usersAPI.getProfile(userID)
+          .then(responce => {
+              dispatch(setProfileState(responce.data));
+          });
+  }
+}

@@ -9,7 +9,8 @@ let mapStateToProps = (state) => {
         pageLimit: state.userPage.pageLimit,
         activePage: state.userPage.activePage,
         isLoad: state.userPage.isLoad,
-        answerStatus: state.userPage.answerStatus
+        answerStatus: state.userPage.answerStatus,
+        authStatus: state.authInfo.data.login
     };
 }
 

@@ -1,6 +1,6 @@
 import React from "react";
 import main from "./Dialogs.module.css"
-import { NavLink } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 
 const DialogUser = (props) => {
     let path = "/dialogs/" + props.id;
@@ -33,6 +33,11 @@ class Dialogs extends React.Component {
     }
 
     render = () => {
+
+        if (!this.props.authStatus) {
+            return (<Redirect to='/auth' />)
+        }
+
         return (
             <div className={main.containerDialogs}>
                 <div className={main.dialogUserWrapper}>

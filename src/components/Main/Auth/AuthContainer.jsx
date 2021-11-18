@@ -1,9 +1,9 @@
 import { connect } from "react-redux";
 import { getLoginThunk } from "../../../redux/auth-reducer";
 import React from "react";
-import LoginBar from "./LoginBar";
+import Auth from "./Auth";
 
-class LoginBarContainer extends React.Component {
+class AuthContainer extends React.Component {
 
     componentDidMount() {
         this.props.getLoginThunk();
@@ -12,7 +12,7 @@ class LoginBarContainer extends React.Component {
     render = () => {
         // debugger
         return (
-            <LoginBar {...this.props} />
+            <Auth />
         )
     }
 }
@@ -21,4 +21,4 @@ let mapStateToProps = (state) => {
     return { ...state.authInfo };
 }
 
-export default connect(mapStateToProps, { getLoginThunk })(LoginBarContainer);
+export default connect(mapStateToProps, { getLoginThunk })(AuthContainer);

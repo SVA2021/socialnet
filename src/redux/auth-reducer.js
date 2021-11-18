@@ -1,3 +1,5 @@
+import { authAPI } from "../API/api";
+
 const SET_AUTH_STATE = 'SET_AUTH_STATE';
 
 let initialState = {
@@ -32,3 +34,11 @@ const authReducer = (state = initialState, action) => {
 
 export default authReducer;
 export const setAuthState = (userInfo) => ({ type: SET_AUTH_STATE, userInfo });
+
+export const getLoginThunk = () => {
+  return (dispatch) => {
+    authAPI.getLogin().then( responce => {
+      dispatch(setAuthState(responce.data))
+    });
+  }
+}

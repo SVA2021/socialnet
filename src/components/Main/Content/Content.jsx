@@ -8,6 +8,7 @@ import Settings from "../Settings/Settings.jsx";
 import DialogsContainer from "../Dialogs/DialogsContainer";
 import UsersContainer from "../Users/UsersContainer";
 import ProfileContainer from "../Profile/ProfileContainer";
+import Auth from "../Auth/Auth";
 
 const Content = (props) => {
 
@@ -19,6 +20,7 @@ const Content = (props) => {
             <Route path="/news" render={() => <News />} /> 
             <Route path="/music" component={Music} /> 
             <Route path="/settings" component={Settings} />
+            <Route path="/auth" render={() => <Auth />} /> 
         </div>
     );
 }

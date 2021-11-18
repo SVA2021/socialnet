@@ -2,6 +2,7 @@ import React from "react";
 import main from "./UsersAPI.module.css"
 import User from "./User.jsx";
 import Preloader from "../../Preloader/Preloader";
+import { Redirect } from "react-router";
 
 class UsersAPI extends React.Component {
 
@@ -21,6 +22,11 @@ class UsersAPI extends React.Component {
         this.setActivePage = (p) => {
             this.props.setActivePageThunk(p, this.props.pageLimit)
         }
+
+        if (!this.props.authStatus) {
+            return (<Redirect to='/auth' />)
+        }
+
         return (
             <div className={main.parentProfile}>
                 {(this.props.isLoad === true) ? <Preloader /> : null}
@@ -44,10 +50,11 @@ class UsersAPI extends React.Component {
 
                 {/* users rendering */}
                 {this.props.items.map((user) =>
-                    <User user={user} 
-                    // userUnfollow={this.props.userUnfollow} answerStatus={this.props.answerStatus}
-                    //     userFollow={this.props.userFollow} setAnswerStatus={this.props.setAnswerStatus}
-                        followThunk={this.props.followThunk} unfollowThunk={this.props.unfollowThunk} />)}
+                    <User
+                        user={user}
+                        followThunk={this.props.followThunk}
+                        unfollowThunk={this.props.unfollowThunk}
+                    />)}
             </div>
         );
     }

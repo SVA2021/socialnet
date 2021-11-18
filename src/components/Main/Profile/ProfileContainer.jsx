@@ -1,30 +1,21 @@
 import { connect } from "react-redux";
-import { setProfileState } from "../../../redux/profile-reducer";
-import { withRouter } from "react-router";
+import { getProfileThunk } from "../../../redux/profile-reducer";
+import { Redirect, withRouter } from "react-router";
 import React from "react";
 import main from "./ProfileContainer.module.css";
 import ProfileInfo from "./ProfileInfo";
-import axios from "axios";
 
 class ProfileContainer extends React.Component {
 
-    requestData() {//difference request depend on server rules
-        // debugger
-        let userID = this.props.match.params.userID;
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userID) //test address
-            .then(responce => {
-                // debugger
-                this.props.setProfileState(responce.data);
-                // console.log(responce.data);
-            });
-    }
-
     componentDidMount() {
-        this.requestData();
+        let userID = this.props.match.params.userID;
+        this.props.getProfileThunk(userID);
     }
 
     render = () => {
-        // debugger
+        if (!this.props.authStatus) {
+            return (<Redirect to='/auth' />)
+        }
         return (
             <div className={main}>
                 <p>Profile information to be develop</p>
@@ -35,8 +26,11 @@ class ProfileContainer extends React.Component {
 }
 
 let mapStateToProps = (state) => {
-    return { profile: state.profilePage.profile };
+    return {
+        profile: state.profilePage.profile,
+        authStatus: state.authInfo.data.login
+    };
 }
 let withUTRLDataProfileContainer = withRouter(ProfileContainer);
 
-export default connect(mapStateToProps, { setProfileState })(withUTRLDataProfileContainer);
+export default connect(mapStateToProps, { getProfileThunk })(withUTRLDataProfileContainer);
