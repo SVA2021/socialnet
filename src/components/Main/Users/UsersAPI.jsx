@@ -23,9 +23,7 @@ class UsersAPI extends React.Component {
             this.props.setActivePageThunk(p, this.props.pageLimit)
         }
 
-        if (!this.props.authStatus) {
-            return (<Redirect to='/auth' />)
-        }
+        if (!this.props.authStatus) { return (<Redirect to='/auth' />) }
 
         return (
             <div className={main.parentProfile}>

@@ -1,4 +1,6 @@
 import { connect } from "react-redux";
+import { compose } from "redux";
+import { withAuthRedirectContainer } from "../../../hoc/withAuth";
 import { getUsersThunk, setActivePageThunk, followThunk, unfollowThunk } from "../../../redux/users-reducer";
 import UsersAPI from "./UsersAPI";
 
@@ -14,7 +16,12 @@ let mapStateToProps = (state) => {
     };
 }
 
-const UsersContainer = connect(mapStateToProps,
-    { getUsersThunk, setActivePageThunk, followThunk, unfollowThunk })(UsersAPI);
+// const UsersContainer = connect(mapStateToProps,
+//     { getUsersThunk, setActivePageThunk, followThunk, unfollowThunk })(UsersAPI);
 
-export default UsersContainer;
+// export default UsersContainer;
+
+export default compose(
+    connect(mapStateToProps, { getUsersThunk, setActivePageThunk, followThunk, unfollowThunk }),
+    withAuthRedirectContainer
+)(UsersAPI);

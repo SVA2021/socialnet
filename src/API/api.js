@@ -26,6 +26,16 @@ export const usersAPI = {
         // debugger
         return instance.get(`profile/` + userID)
             .then((responce) => (responce))
+    },
+    getProfileStatus(userID) {
+        // debugger
+        return instance.get(`profile/status/` + userID)
+            .then((responce) => (responce))
+    },
+    setProfileStatus(string) {
+        // debugger
+        return instance.put(`profile/status`, {status: string})
+            .then((responce) => (responce))
     }
 }
 

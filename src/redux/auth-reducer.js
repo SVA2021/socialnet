@@ -3,10 +3,10 @@ import { authAPI } from "../API/api";
 const SET_AUTH_STATE = 'SET_AUTH_STATE';
 
 let initialState = {
-  
   resultCode: 0,
   messages: [],
-  data: {}
+  data: {},
+  status: 'please login to see status'
 };
 /*
 {

@@ -1,0 +1,13 @@
+.parent {
+    margin: 0;
+    /* height: 30px; */
+    padding: 5px 25px;
+    color: #ffe;
+    text-decoration: none;
+    background: #b9732f;
+    cursor: pointer;
+}
+
+.parent img {
+    height: 200px;
+}
