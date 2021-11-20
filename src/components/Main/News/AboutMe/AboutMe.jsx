@@ -11,6 +11,7 @@ class AboutMe extends React.Component {
 
     componentDidMount() {
         // debugger
+        if (!this.props.auth.id) {return console.log('waiting auth info');}
         this.props.getProfileStatusThunk(this.props.auth.id);
     }
     

@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { getLoginThunk } from "../../../redux/auth-reducer";
 import React from "react";
-import Auth from "./Auth";
+import Auth from "./Login";
 
 class AuthContainer extends React.Component {
 

@@ -9,17 +9,18 @@ let initialState = {
         {id: 4, post: 'Yo'},
         {id: 5, post: 'Yo'}
       ], 
-      newPostText: 'new post in state'
+    //   newPostText: "" //'new post in state'
 };
 
 
 const postReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST: {
+            // debugger
            return {
                ...state,
-               postlist: [...state.postlist, { id: 6, post: state.newPostText} ],
-               newPostText: ''
+               postlist: [...state.postlist, { id: 6, post: action.post } ], //state.newPostText
+               newPostText: "" //action.post
            }
         }
         case UPDATE_NEW_POST_TEXT: {
@@ -33,5 +34,5 @@ const postReducer = (state = initialState, action) => {
 }
 
 export default postReducer;
-export const addPostActionCreator = (text) => ({type: ADD_POST, newPostText: text});
+export const addPostActionCreator = (post) => ({type: ADD_POST, post});
 export const updateNewPostActionCreator = (text) => ({type: UPDATE_NEW_POST_TEXT, newPostText: text});
